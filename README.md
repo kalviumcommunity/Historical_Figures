@@ -1,5 +1,5 @@
 🕰️ HistorySpeaks
-HistorySpeaks is a Generative AI project where users can chat with famous historical figures like Albert Einstein, Mahatma Gandhi, Cleopatra, and more.
+HistorySpeaks is a Generative AI project where users can chat with famous historical figures like Albert Einstein, Mahatma Gandhi, Cleopatra
 
 This project combines cutting-edge AI techniques including:
 
@@ -139,3 +139,4 @@ HistorySpeaks/
 "Gandhiji, what are your thoughts on non-violence today?"
 
 "Cleopatra, tell me about your rule and your love story."
+
