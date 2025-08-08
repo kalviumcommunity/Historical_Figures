@@ -1,62 +1,50 @@
-# 🧠 Generative AI Project — HistorySpeaks
+# 🕰️ HistorySpeaks
 
-**HistorySpeaks** is a simple and beginner-friendly Generative AI project that allows users to **chat with famous historical figures** like Mahatma Gandhi, Cleopatra, or Albert Einstein.
-
-This project demonstrates:
-- 🔮 Prompt Engineering
-- 📚 RAG (Retrieval-Augmented Generation)
-- ⚙️ Function Calling
-- 🧾 Structured Output
+**HistorySpeaks** is a Generative AI project that allows users to interact with famous personalities from history like Albert Einstein, Mahatma Gandhi, Cleopatra, and more.
 
 ---
 
-## 🏗️ Tech Stack
+## 🚀 Features
 
-- Node.js (Backend)
+- 🧠 **Prompting**: The AI is prompted to behave like a historical figure using detailed instructions and character traits.
+- 📚 **RAG (Retrieval-Augmented Generation)**: Uses document retrieval to provide accurate and relevant responses based on historical facts.
+- ⚙️ **Function Calling**: Handles tasks like looking up important dates or structured facts (e.g., birth year, major works).
+- 📊 **Structured Output**: Responses can be formatted into timelines, quotes, and fact tables for clarity.
+
+---
+
+## 🛠️ Tech Stack
+
+- Node.js
 - OpenAI API
 - Express.js
-- JSON Schema (for structured output)
+- MongoDB (optional, for logging interactions)
+- React (for frontend, if applicable)
 
 ---
 
-## ✨ Features
+## 📦 How It Works
 
-| Feature               | Description                                                                 |
-|----------------------|-----------------------------------------------------------------------------|
-| Prompting            | The AI is guided to speak in the style of a historical figure.              |
-| RAG                  | Uses context from documents to give accurate responses.                      |
-| Function Calling     | Answers factual questions like birth dates using predefined functions.       |
-| Structured Output    | Gives replies in well-formatted JSON for UI rendering or further logic.      |
-
----
-
-## 🧪 Example Interactions
-
-- **User:** What is your theory of relativity, Einstein?
-- **Einstein (AI):** Let me explain it simply! In special relativity, time slows down the faster you go...
-
-- **User:** When were you born, Gandhi?
-- **AI:** `{"name": "Mahatma Gandhi", "birthdate": "October 2, 1869", "location": "Porbandar, India"}`
+1. The user selects a historical figure.
+2. A pre-defined prompt is sent to the AI to simulate that person's tone and knowledge.
+3. RAG fetches relevant documents or context if needed.
+4. If a fact (e.g., birth year) is requested, the system uses function calling to retrieve it.
+5. The response is formatted using structured output (markdown, JSON, etc.).
 
 ---
 
-## 📦 Folder Structure
+## 📁 Example Output
 
-📁 HistorySpeaks
-├── 📂 api
-├── 📂 data
-├── 📂 functions
-├── 📜 README.md
-├── 📜 server.js
-└── 📜 package.json
-
+> 👤 **Albert Einstein:**  
+> "Imagination is more important than knowledge. In 1905, I published the theory of special relativity. Would you like to know more?"
 
 ---
 
-## 🛠️ How to Run
+## 📎 Usage
 
 ```bash
-git clone https://github.com/your-username/HistorySpeaks.git
-cd HistorySpeaks
+# Install dependencies
 npm install
-node server.js
+
+# Start the server
+node index.js
