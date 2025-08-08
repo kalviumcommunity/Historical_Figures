@@ -1,50 +1,50 @@
 # 🕰️ HistorySpeaks
 
-**HistorySpeaks** is a Generative AI project that allows users to interact with famous personalities from history like Albert Einstein, Mahatma Gandhi, Cleopatra, and more.
+**HistorySpeaks** is a Generative AI experience that lets users engage in conversations with legendary figures from the past such as Albert Einstein, Mahatma Gandhi, Cleopatra, and many more.
 
 ---
 
-## 🚀 Features
+## 🚀 Key Highlights
 
-- 🧠 **Prompting**: The AI is prompted to behave like a historical figure using detailed instructions and character traits.
-- 📚 **RAG (Retrieval-Augmented Generation)**: Uses document retrieval to provide accurate and relevant responses based on historical facts.
-- ⚙️ **Function Calling**: Handles tasks like looking up important dates or structured facts (e.g., birth year, major works).
-- 📊 **Structured Output**: Responses can be formatted into timelines, quotes, and fact tables for clarity.
+- 🧠 **Character Prompting**: The AI is guided to imitate a historical personality using descriptive prompts and characteristic behavior.
+- 📚 **RAG (Retrieval-Augmented Generation)**: Integrates document search to deliver historically accurate and context-aware answers.
+- ⚙️ **Function Calling**: Enables specific lookups like birth dates, key achievements, and other structured data.
+- 📊 **Structured Output**: Answers are structured clearly through timelines, famous quotes, and information tables.
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠️ Technologies Used
 
 - Node.js
 - OpenAI API
 - Express.js
-- MongoDB (optional, for logging interactions)
-- React (for frontend, if applicable)
+- MongoDB 
+- React 
 
 ---
 
-## 📦 How It Works
+## 📦 Workflow
 
-1. The user selects a historical figure.
-2. A pre-defined prompt is sent to the AI to simulate that person's tone and knowledge.
-3. RAG fetches relevant documents or context if needed.
-4. If a fact (e.g., birth year) is requested, the system uses function calling to retrieve it.
-5. The response is formatted using structured output (markdown, JSON, etc.).
+1. A user chooses a historical icon.
+2. A specialized prompt is sent to the AI to replicate that person's style and knowledge.
+3. RAG retrieves supportive documents or contextual information when needed.
+4. If factual details are requested, function calls handle fetching specific data.
+5. The response is formatted neatly using structured layouts (e.g., markdown or JSON).
 
 ---
 
-## 📁 Example Output
+## 📁 Sample Interaction
 
 > 👤 **Albert Einstein:**  
-> "Imagination is more important than knowledge. In 1905, I published the theory of special relativity. Would you like to know more?"
+> "Imagination trumps knowledge. In 1905, I introduced the special theory of relativity. Would you like to dive deeper?"
 
 ---
 
-## 📎 Usage
+## 📎 Getting Started
 
 ```bash
-# Install dependencies
+# Install all required packages
 npm install
 
-# Start the server
+# Launch the backend server
 node index.js
