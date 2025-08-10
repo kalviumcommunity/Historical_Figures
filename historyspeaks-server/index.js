@@ -4,6 +4,7 @@ import cors from "cors";
 import Groq from "groq-sdk";
 import { createZeroShotPrompt } from "./zeroShot.js";
 import { createOneShotPrompt } from "./oneShot.js";
+import { createMultiShotPrompt } from "./multiShot.js";
 
 dotenv.config();
 
@@ -14,11 +15,13 @@ app.use(express.json());
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 app.post("/ask", async (req, res) => {
-  const { question, mode } = req.body;  // mode: "zero" or "one"
+  const { question, mode } = req.body;  // mode: "zero", "one", or "multi"
 
   let prompt;
   if (mode === "one") {
     prompt = createOneShotPrompt(question);
+  } else if (mode === "multi") {
+    prompt = createMultiShotPrompt(question);
   } else {
     prompt = createZeroShotPrompt(question);
   }
