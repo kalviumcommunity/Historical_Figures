@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import Groq from "groq-sdk";
 import { createZeroShotPrompt } from "./zeroShot.js";
+import { createOneShotPrompt } from "./oneShot.js";
 
 dotenv.config();
 
@@ -13,9 +14,14 @@ app.use(express.json());
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 app.post("/ask", async (req, res) => {
-  const { question } = req.body;
+  const { question, mode } = req.body;  // mode: "zero" or "one"
 
-  const prompt = createZeroShotPrompt(question);
+  let prompt;
+  if (mode === "one") {
+    prompt = createOneShotPrompt(question);
+  } else {
+    prompt = createZeroShotPrompt(question);
+  }
 
   try {
     const completion = await groq.chat.completions.create({
