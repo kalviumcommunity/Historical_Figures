@@ -1,15 +1,14 @@
-World War II started in 1939 and ended in 1945.
-The United States dropped atomic bombs on Hiroshima and Nagasaki in August 1945.
-The American Civil War lasted from 1861 to 1865.
-George Washington was the first president of the United States.
-The Renaissance was a cultural movement that began in Italy during the 14th century.
-The French Revolution started in 1789 and led to the rise of Napoleon Bonaparte.
-The Berlin Wall fell in 1989, marking the end of the Cold War.
-Mahatma Gandhi led India to independence through nonviolent civil disobedience.
-The Great Depression began in 1929 and had worldwide economic impact.
-Julius Caesar was a Roman general and dictator who played a critical role in the demise of the Roman Republic.
-The Magna Carta, signed in 1215, limited the powers of the English monarchy.
-The Space Race was a competition between the USA and USSR that led to the first man landing on the moon in 1969.
-Queen Elizabeth I ruled England from 1558 to 1603.
-Alexander the Great created one of the largest empires of the ancient world by the age of 30.
-The Industrial Revolution began in Britain in the late 18th century and transformed economies worldwide.
+Albert Einstein:
+A theoretical physicist who developed the theory of relativity. Born in 1879 in Germany, he made groundbreaking contributions to theoretical physics and won the Nobel Prize in Physics in 1921.
+
+Marie Curie:
+A physicist and chemist who conducted pioneering research on radioactivity. Born in 1867 in Poland, she was the first woman to win a Nobel Prize and the only person to win Nobel Prizes in two different sciences.
+
+APJ Abdul Kalam:
+An aerospace scientist and the 11th President of India, serving from 2002 to 2007. Known as the "Missile Man of India," he was instrumental in India's missile development and inspired millions through his books and speeches.
+
+Abraham Lincoln:
+The 16th President of the United States, serving from 1861 to 1865. He led the nation during the American Civil War and is remembered for abolishing slavery through the Emancipation Proclamation.
+
+Chhatrapati Shivaji Maharaj:
+A 17th-century Indian warrior king and the founder of the Maratha Empire. Known for his innovative military tactics, administrative reforms, and promotion of regional languages and culture.
