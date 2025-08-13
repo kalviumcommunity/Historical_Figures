@@ -15,26 +15,41 @@ app.use(express.json());
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 app.post("/ask", async (req, res) => {
-  const { question, mode } = req.body;  // mode: "zero", "one", or "multi"
+  const { prompt, question, mode, temperature } = req.body; 
 
-  let prompt;
-  if (mode === "one") {
-    prompt = createOneShotPrompt(question);
-  } else if (mode === "multi") {
-    prompt = createMultiShotPrompt(question);
+  let finalPrompt;
+  if (prompt) {
+    finalPrompt = prompt;
+  } else if (question) {
+    if (mode === "one") {
+      finalPrompt = createOneShotPrompt(question);
+    } else if (mode === "multi") {
+      finalPrompt = createMultiShotPrompt(question);
+    } else {
+      finalPrompt = createZeroShotPrompt(question);
+    }
   } else {
-    prompt = createZeroShotPrompt(question);
+    return res.status(400).json({ error: "Please provide either 'prompt' or 'question'." });
   }
 
   try {
     const completion = await groq.chat.completions.create({
       model: "llama3-8b-8192",
       messages: [
-        { role: "system", content: "You are a helpful historian." },
-        { role: "user", content: prompt }
+        {
+          role: "system",
+          content: "You are a knowledgeable historian. Answer questions accurately, concisely, and in simple language. Return answers as plain text."
+        },
+        {
+          role: "user",
+          content: finalPrompt  
+        }
       ],
-      temperature: 0.2,
+      temperature: temperature ?? 0.2,
+      max_tokens: 500,
     });
+
+    console.log(completion);
 
     res.json({ answer: completion.choices[0].message.content });
   } catch (error) {
