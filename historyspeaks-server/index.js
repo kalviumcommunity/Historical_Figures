@@ -4,6 +4,7 @@ import cors from "cors";
 import Groq from "groq-sdk";
 import fs from "fs";
 import path from "path";
+import stringSimilarity from "string-similarity";
 import { createZeroShotPrompt } from "./zeroShot.js";
 import { createOneShotPrompt } from "./oneShot.js";
 import { createMultiShotPrompt } from "./multiShot.js";
@@ -16,23 +17,19 @@ app.use(express.json());
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
-
-const historyPath = path.resolve("history.txt"); 
-
+const historyPath = path.resolve("history.txt");
 
 function loadHistoryData() {
   try {
     if (!fs.existsSync(historyPath)) {
-      fs.writeFileSync(historyPath, ""); 
+      fs.writeFileSync(historyPath, "");
     }
-    const data = fs.readFileSync(historyPath, "utf-8");
-    return data;
+    return fs.readFileSync(historyPath, "utf-8");
   } catch (err) {
     console.error("Error reading history.txt:", err.message);
     return "";
   }
 }
-
 
 function appendToHistory(data) {
   try {
@@ -42,14 +39,29 @@ function appendToHistory(data) {
   }
 }
 
+// --- Top-K similarity search ---
+function getTopKMatches(query, k = 3) {
+  const ragData = loadHistoryData();
+  const lines = ragData.split("\n").filter((line) => line.trim());
 
+  const matches = lines.map((line) => ({
+    text: line,
+    score: stringSimilarity.compareTwoStrings(query.toLowerCase(), line.toLowerCase())
+  }));
+
+  return matches
+    .sort((a, b) => b.score - a.score)
+    .slice(0, k)
+    .map((m) => m.text);
+}
+
+// --- Functions exposed to the model ---
 const availableFunctions = {
-  getPersonInfo: (name) => {
-    const ragData = loadHistoryData();
-    const match = ragData
-      .split("\n")
-      .find((line) => line.toLowerCase().startsWith(name.toLowerCase()));
-    return match || `No information found for ${name}.`;
+  getPersonInfo: (name, k = 3) => {
+    const topMatches = getTopKMatches(name, k);
+    return topMatches.length
+      ? topMatches
+      : [`No information found for ${name}.`];
   },
   listAllFigures: () => {
     const ragData = loadHistoryData();
@@ -67,7 +79,6 @@ const availableFunctions = {
     }
   },
 };
-
 
 app.post("/ask", async (req, res) => {
   const { prompt, question, mode, temperature, role, context } = req.body;
@@ -102,8 +113,15 @@ app.post("/ask", async (req, res) => {
       functions: [
         {
           name: "getPersonInfo",
-          description: "Get biography of a historical figure",
-          parameters: { type: "object", properties: { name: { type: "string" } }, required: ["name"] },
+          description: "Get biography of a historical figure (Top-K matches)",
+          parameters: {
+            type: "object",
+            properties: {
+              name: { type: "string" },
+              k: { type: "number", description: "Number of top matches to return" }
+            },
+            required: ["name"]
+          },
         },
         {
           name: "listAllFigures",
@@ -129,7 +147,7 @@ app.post("/ask", async (req, res) => {
 
       if (availableFunctions[fnName]) {
         const result = availableFunctions[fnName](...Object.values(fnArgs));
-        appendToHistory(`Function call: ${fnName} with args ${JSON.stringify(fnArgs)} => ${result}`);
+        appendToHistory(`Function call: ${fnName} with args ${JSON.stringify(fnArgs)} => ${JSON.stringify(result)}`);
         return res.json({ answer: result, source: "function_call" });
       } else {
         return res.status(400).json({ error: `Unknown function ${fnName}` });
@@ -143,9 +161,7 @@ app.post("/ask", async (req, res) => {
   }
 });
 
-
 app.listen(3000, () => console.log("Server running on port 3000"));
-
 
 console.log("Using history.txt at:", historyPath);
 console.log("History exists?", fs.existsSync(historyPath));

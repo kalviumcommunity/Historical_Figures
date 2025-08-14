@@ -1,0 +1,6 @@
+
+Function call: getPersonInfo with args {"name":"Shivaji Maharaj"} => No information found for Shivaji Maharaj.
+Function call: getPersonInfo with args {"name":"Shivaji Maharaj"} => No information found for Shivaji Maharaj.
+Function call: getPersonInfo with args {"name":"Shivaji Maharaj"} => No information found for Shivaji Maharaj.
+Function call: listAllFigures with args {} => Function call,Function call,Function call
+Function call: listAllFigures with args {} => Function call,Function call,Function call,Function call
